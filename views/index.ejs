@@ -1,0 +1,18 @@
+<%- include('includes/head.ejs') %>
+<%- include('includes/navigation.ejs') %>
+
+    <div class ="container-xxl">
+      <div class="mb-3">
+        <form action="/predict" method="post" enctype="multipart/form-data">    
+            <!--enctype="multipart/form-data" is used when a form requires binary data, like the contents of a file, to be uploaded instead of urlencoded type , so we have to also change our body parser --> 
+            <div>
+                <label for="formFileLg" class="form-label">Upload Image</label>
+                <input type="file" name="image" id = "image formFileLg" class="form-control form-control-lg" >
+                <button type="submit" class="btn btn-outline-primary">Upload</button>
+            </div>
+        </form>
+      </div>
+    </div>
+
+<%- include('includes/end.ejs') %>
+

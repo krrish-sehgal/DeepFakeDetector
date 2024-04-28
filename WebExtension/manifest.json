@@ -1,0 +1,20 @@
+  {
+    "name": "deep-fake-detect",
+    "version": "0.1.0",
+    "description": "snipping",
+    "permissions": ["storage", "tabs" , "activeTab", "clipboardWrite"],
+    "manifest_version": 3,
+
+    "background": {
+      "service_worker": "background.js"
+    },
+    "action": {
+      "default_icon": {
+        "16": "assets/ext-icon.png",
+        "24": "assets/ext-icon.png",
+        "32": "assets/ext-icon.png"
+      },
+      "default_title": "snipper",
+      "default_popup": "popup.html"
+    }
+}

@@ -1,4 +1,5 @@
 const fs = require('fs');
+const { spawn } = require('child_process');
 
 exports.postUpload = (req, res, next) => {
     const image = req.body.image;
@@ -11,13 +12,44 @@ exports.postUpload = (req, res, next) => {
         const buffer = Buffer.from(base64Data, 'base64');
 
         // Write the buffer to a file
+        const imagePath = 'images/screenshot.png';
         fs.writeFile('images/screenshot.png', buffer, function(err) {
             if (err) {
                 console.error('Error saving screenshot:', err);
                 res.status(500).send('Error saving screenshot');
             } else {
-                console.log('Screenshot saved successfully');
-                res.send('Screenshot saved');
+                const pythonProcess = spawn('python3', ['predict.py', imagePath]);
+    
+                let predictionData = '';
+                let errorOccurred = false; // Flag to track if error occurred¸¸
+                var prediction  =0;
+            
+                pythonProcess.stdout.on('data', (data) => {
+                    predictionData += data.toString();
+                });
+                
+                pythonProcess.on('close', (code) => {
+                    if (!errorOccurred) {
+                        if (code === 0) {
+                            const lines = predictionData.trim().split('\n');
+                            const lastLine = lines[lines.length - 1];
+                            prediction = parseFloat(JSON.parse(lastLine).prediction);
+            
+                            if(prediction>0.5){
+                                prediction = "The image is a cat";
+                            }
+                            console.log(prediction);
+                            // res.render('prediction', {
+                            //     pageTitle: 'prediction',
+                            //     prediction: prediction,
+                            // });
+            
+                        } else {
+                            console.error(`Python process exited with code ${code}`);
+                            res.status(500).send('Internal Server Error');
+                        }
+                    }
+                });
             }
         });
     } else {

@@ -14,7 +14,7 @@ exports.postPredict = (req, res, next) => {
     const pythonProcess = spawn('python3', ['predict.py', imagePath]);
     
     let predictionData = '';
-    let errorOccurred = false; // Flag to track if error occurred
+    let errorOccurred = false; // Flag to track if error occurred¸¸
     var prediction  =0;
 
     pythonProcess.stdout.on('data', (data) => {

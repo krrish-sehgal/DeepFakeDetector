@@ -2,6 +2,8 @@ console.log("popup script Loaded");
 document.addEventListener("DOMContentLoaded", runFunction);
 
 function runFunction() {
+  let thumbClicks = 0;
+
   document
     .getElementById("snipButton")
     .addEventListener("click", clickFunction);
@@ -58,7 +60,14 @@ function runFunction() {
         imageContainer.appendChild(container);
 
         // Add click event to open the image in a larger view
-        imgElement.addEventListener("click", openThumbnail);
+        imgElement.addEventListener("click", () => {
+          thumbClicks++;
+          if (thumbClicks % 2 === 1) {
+            openThumbnail(imageDataUrl);
+          } else {
+            closeThumbnail();
+          }
+        });
       });
     } else {
       // Handle case where no images are found
@@ -89,10 +98,16 @@ function runFunction() {
   }
 
   // Function to open the image in a larger view
-  function openThumbnail() {
+  function openThumbnail(imageDataUrl) {
+    const existingLargeImage = document.getElementById("largeImage");
+    if (existingLargeImage) {
+      existingLargeImage.remove();
+    }
+
     const largeImage = document.createElement("img");
+    largeImage.id = "largeImage";
     largeImage.src = imageDataUrl;
-    largeImage.style.width = "100%";
+    largeImage.style.width = "50%";
     largeImage.style.height = "auto";
     largeImage.style.position = "fixed";
     largeImage.style.top = "50%";
@@ -105,11 +120,12 @@ function runFunction() {
     largeImage.style.boxShadow = "0 0 10px rgba(0, 0, 0, 0.5)";
     largeImage.style.cursor = "pointer";
 
-    // Add click event to close the large image view
-    largeImage.addEventListener("click", () => {
-      largeImage.remove();
-    });
-
     document.body.appendChild(largeImage);
+  }
+  function closeThumbnail() {
+    const existingLargeImage = document.getElementById("largeImage");
+    if (existingLargeImage) {
+      existingLargeImage.remove();
+    }
   }
 }

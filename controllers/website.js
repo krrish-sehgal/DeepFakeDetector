@@ -29,12 +29,14 @@ exports.postPredict = (req, res, next) => {
                 prediction = parseFloat(JSON.parse(lastLine).prediction);
 
                 if(prediction>0.5){
-                    prediction = "The image is a cat";
+                    prediction = 100*prediction;
                 }
+                const roundedPrediction = prediction.toFixed(2);
 
                 res.render('prediction', {
                     pageTitle: 'prediction',
-                    prediction: prediction,
+                    prediction: roundedPrediction,
+                    imageUrl:`/images/${file.filename}`
                 });
 
             } else {

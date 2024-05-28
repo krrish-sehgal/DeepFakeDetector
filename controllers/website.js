@@ -8,6 +8,8 @@ exports.getIndex = (req, res, next) => {
 };
 exports.postPredict = (req, res, next) => {
   const file = req.file;
+
+  // Some error in this line
   const imagePath = path.join(__dirname, "..", "images", file.filename); // Assuming images are saved in 'images' directory
 
   // Spawn a Python process

@@ -30,9 +30,15 @@ exports.postPredict = (req, res, next) => {
         const lastLine = lines[lines.length - 1];
         prediction = parseFloat(JSON.parse(lastLine).prediction);
 
+        if (prediction > 0.5) {
+          prediction = 100 * prediction;
+        }
+        const roundedPrediction = prediction.toFixed(2);
+
         res.render("prediction", {
           pageTitle: "prediction",
-          prediction: prediction,
+          prediction: roundedPrediction,
+          imageUrl: `/images/${file.filename}`,
         });
       } else {
         console.error(`Python process exited with code ${code}`);

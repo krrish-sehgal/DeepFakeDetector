@@ -17,31 +17,81 @@
     opacity: 1;
   }
 }
+body {
+  font-family: 'Montserrat', sans-serif;
+  background-color: #6788d4;
+  margin: 0;
+  padding: 0;
+}
+
 .custom-navbar {
-  background-color: #eeb6b6; /* Custom background color */
-  color: rgb(0, 0, 0); /* Custom text color */
+  background-color: #F2F2F2;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 1rem 2rem;
 }
 
-.custom-navbar .navbar-brand {
-  display: flex;
-  align-items: center;
+.navbar-brand {
+  font-size: 1.5rem;
+  color: #333;
+  font-weight: bold;
+  text-transform: uppercase;
 }
 
-.custom-navbar .navbar-brand img {
-  margin-right: 10px; /* Space between logo and title */
+.navbar-brand h4 {
+  margin: 0;
+  font-size: 1.25rem;
+  color: #333;
 }
 
-.custom-navbar .navbar-nav .nav-link {
-  color: rgb(0, 0, 0); /* Custom link color */
+.nav-link {
+  color: #333;
+  font-size: 1.1rem;
+  transition: color 0.3s ease;
 }
 
-.custom-navbar .navbar-nav .nav-link:hover {
-  color: #85ecd7; /* Hover color */
+.nav-link:hover {
+  color: #6200ea;
 }
+
+.navbar-toggler {
+  border: none;
+  outline: none;
+}
+
+.offcanvas-header {
+  border-bottom: 1px solid #e9ecef;
+}
+
+.offcanvas-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.offcanvas-body .nav-link {
+  color: #333;
+  padding: 0.5rem 1rem;
+}
+
+.offcanvas-body .nav-link:hover {
+  background-color: #f1f1f1;
+  border-radius: 0.25rem;
+}
+
+@media (max-width: 992px) {
+  .navbar-nav {
+      text-align: center;
+  }
+
+  .nav-link {
+      padding: 0.5rem 0;
+  }}
 .upload-section {
   animation: slideInFromDown 0.5s ease-out; /* Adjust animation duration and timing function as needed */
-  background: linear-gradient(105deg, #ffcc70 0%, #ff8a00 100%);
+  background: linear-gradient(105deg, #406ff0 0%, #ff8a00 100%);
   border-radius: 15px;
+  border:  black;
+  box-shadow: black;
   padding: 50px; /* Increase padding for larger size */
   text-align: center;
   color: white;
@@ -128,11 +178,11 @@ h2 {
 }
 
 /* Footer styling */
-footer {
+/* footer {
   background-color: #013220;
   color: white;
   padding: 50px 0;
-}
+} */
 
 footer h5, footer h6 {
   margin-bottom: 15px;
@@ -142,11 +192,117 @@ footer .social-icons a {
   margin-right: 10px;
 }
 
-footer a {
+/* footer a {
   color: white;
   text-decoration: none;
 }
 
 footer a:hover {
   text-decoration: underline;
+} */
+/* Custom styles for footer */
+footer {
+  background-color: #150d63; /* Dark background color */
+}
+
+.social-icons a {
+  display: inline-block;
+  margin-right: 15px;
+}
+
+.social-icons img {
+  width: 40px; /* Adjust icon size */
+  height: auto;
+}
+
+.footer-links a {
+  color: #ccc; /* Light text color for links */
+  text-decoration: none;
+}
+.footer-links a:hover {
+  color: #fff; /* Change color on hover */
+}
+
+.footer-links a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  display: block;
+  margin-top: 5px;
+  right: 0;
+  background: #fff;
+  transition: width 0.3s ease, background-color 0.3s ease;
+}
+
+.footer-links a:hover::after {
+  width: 100%; /* Full width on hover */
+  left: 0;
+  background: #fff; /* White underline */
+}
+
+.footer-links a:hover {
+  color: #fff; /* Change color on hover */
+  text-decoration: underline; /* Remove underline on hover */
+}
+
+.vr {
+  border-left: 2px solid rgba(255, 255, 255, 0.2); /* Vertical line style */
+  height: 100%; /* Full height */
+}
+.signup-container {
+  background-color: #ffffff;
+  padding-top: 50px;
+  padding-bottom: 250px;
+}
+
+.signup-container h2 {
+  font-weight: bold;
+  color: #333;
+}
+
+.signup-container .form-control {
+  margin-bottom: 1rem;
+}
+
+.signup-container .btn-primary {
+  background-color: #007bff;
+  color: #ffffff;
+  border-radius: 8px;
+  padding: 10px 20px;
+  border: none;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.signup-container .btn-primary:hover {
+  background-color: #0056b3;
+}
+
+/* Form container styles */
+.login-container {
+  background-color: #ffffff;
+  padding-top: 50px;
+  padding-bottom: 250px;
+}
+
+.login-container h2 {
+  font-weight: bold;
+  color: #333;
+}
+
+.login-container .form-control {
+  margin-bottom: 1rem;
+}
+
+.login-container .btn-primary {
+  background-color: #007bff;
+  color: #ffffff;
+  border-radius: 8px;
+  padding: 10px 20px;
+  border: none;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.login-container .btn-primary:hover {
+  background-color: #0056b3;
 }

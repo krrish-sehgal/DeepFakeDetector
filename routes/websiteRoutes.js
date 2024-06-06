@@ -10,5 +10,14 @@ const router = express.Router();
 router.get('/', websiteController.getIndex);
 
 router.post('/predict', websiteController.postPredict);
-
+router.get('/signup', (req, res) => {
+    res.render('includes/signups', {
+        pageTitle: 'Sign Up'
+    });
+});
+router.get('/login', (req, res) => {
+    res.render('includes/login', {
+        pageTitle: 'Login'
+    });
+});
 module.exports = router;

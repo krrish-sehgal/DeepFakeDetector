@@ -1,0 +1,38 @@
+<%- include('../includes/head.ejs') %>
+
+<div class="container">
+  <div class="left">
+    <h1 class="title">Deep Guard</h1>
+    <p class="subtitle">Unmasking the Truth Behind Every Image</p>
+  </div>
+  <div class="right">
+    <h2>Login</h2>
+    <p>Enter your email and password to login</p>
+    <form method="POST" action="/login">
+      <input
+        type="email"
+        placeholder="Email"
+        name="email"
+        id="email"
+        required
+      />
+      <input
+        type="password"
+        placeholder="Password"
+        name="password"
+        id="password"
+        required
+      />
+      <button type="submit">Login</button>
+      <p>Don't have an account? <a href="/signup">Create one</a></p>
+      <p>or continue with</p>
+      <button class="google-btn">Google</button>
+      <p>
+        By clicking continue, you agree to our
+        <a href="/TandC">Terms of Service</a> and
+        <a href="/TandC">Privacy Policy</a>
+      </p>
+    </form>
+  </div>
+</div>
+<%- include('../includes/end.ejs') %>

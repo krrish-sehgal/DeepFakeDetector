@@ -1,11 +1,24 @@
-
 <nav class="navbar navbar-expand-lg custom-navbar">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">
-      <img src="/path/to/logo.png" alt="DeepFake Detector Logo" width="30" height="30" class="d-inline-block align-text-top">
+      <img
+        src="/images/lightModeLogo.png"
+        alt="DeepFake Detector Logo"
+        width="30"
+        height="30"
+        class="d-inline-block align-text-top"
+      />
       <h4 class="d-inline-block align-text-top">Deep Guard</h4>
     </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNav"
+      aria-controls="navbarNav"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
@@ -13,20 +26,44 @@
         <li class="nav-item">
           <a class="nav-link" href="/">Home</a>
         </li>
+        <%if(isAuthenticated){%>
+        <li class="nav-item">
+          <a class="nav-link" href="/predict">Predict</a>
+        </li>
+        <li>
+          <a class="nav-link" href="/about">History</a>
+        </li>
+        <%}%>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              <i class="fas fa-user"></i>
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            id="navbarDropdown"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            <i class="fas fa-user"></i>
           </a>
-          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+          <ul
+            class="dropdown-menu dropdown-menu-end"
+            aria-labelledby="navbarDropdown"
+          >
+            <%if(!isAuthenticated){%>
             <li><a class="dropdown-item" href="/signup"> Sign Up</a></li>
             <li><a class="dropdown-item" href="/login">Login</a></li>
-            <li><a class="dropdown-item" href="#">History</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Logout</a></li>
+            <%}else{%>
+            <li><a class="dropdown-item" href="/profile">Profile</a></li>
+            <li><hr class="dropdown-divider" /></li>
+            <li>
+              <form method="POST" action="/logout">
+                <button type="submit" class="dropdown-item">Logout</button>
+              </form>
+            </li>
+            <%}%>
           </ul>
         </li>
       </ul>
     </div>
   </div>
 </nav>
-

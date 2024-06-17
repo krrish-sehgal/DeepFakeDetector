@@ -1,14 +1,11 @@
+const path = require("path");
 
-const path = require('path');
+const express = require("express");
 
-const express = require('express');
-
-const extensionController = require('../controllers/extension');
+const extensionController = require("../controllers/extension");
 
 const router = express.Router();
 
-router.post('/upload', extensionController.postUpload);
-
-// router.post('/predict', adminController.postPredict);
+router.post("/upload", extensionController.postUpload);
 
 module.exports = router;

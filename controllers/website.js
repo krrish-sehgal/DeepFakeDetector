@@ -2,7 +2,7 @@ const { spawn } = require("child_process");
 const path = require("path");
 
 exports.getIndex = (req, res, next) => {
-  res.render("index", {
+  res.render("main/index", {
     pageTitle: "Index",
   });
 };

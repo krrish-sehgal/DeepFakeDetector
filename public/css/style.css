@@ -17,15 +17,16 @@
     opacity: 1;
   }
 }
+
 body {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   background-color: #6788d4;
   margin: 0;
   padding: 0;
 }
 
 .custom-navbar {
-  background-color: #F2F2F2;
+  background-color: #f2f2f2;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   padding: 1rem 2rem;
 }
@@ -80,17 +81,18 @@ body {
 
 @media (max-width: 992px) {
   .navbar-nav {
-      text-align: center;
+    text-align: center;
   }
 
   .nav-link {
-      padding: 0.5rem 0;
-  }}
+    padding: 0.5rem 0;
+  }
+}
 .upload-section {
   animation: slideInFromDown 0.5s ease-out; /* Adjust animation duration and timing function as needed */
   background: linear-gradient(105deg, #406ff0 0%, #ff8a00 100%);
   border-radius: 15px;
-  border:  black;
+  border: black;
   box-shadow: black;
   padding: 50px; /* Increase padding for larger size */
   text-align: center;
@@ -161,7 +163,11 @@ h2 {
 .progress-bar {
   position: relative;
   overflow: hidden;
-  background: linear-gradient(to right, #e22626, #07f207); /* Linear gradient from red to green */
+  background: linear-gradient(
+    to right,
+    #e22626,
+    #07f207
+  ); /* Linear gradient from red to green */
 }
 
 .progress-bar span {
@@ -184,7 +190,8 @@ h2 {
   padding: 50px 0;
 } */
 
-footer h5, footer h6 {
+footer h5,
+footer h6 {
   margin-bottom: 15px;
 }
 
@@ -224,7 +231,7 @@ footer {
 }
 
 .footer-links a::after {
-  content: '';
+  content: "";
   position: absolute;
   width: 0;
   height: 2px;

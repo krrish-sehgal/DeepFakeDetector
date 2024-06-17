@@ -1,23 +1,24 @@
+const path = require("path");
 
-const path = require('path');
+const express = require("express");
 
-const express = require('express');
-
-const websiteController = require('../controllers/website');
+const websiteController = require("../controllers/website");
 
 const router = express.Router();
 
-router.get('/', websiteController.getIndex);
+router.get("/", websiteController.getIndex);
 
-router.post('/predict', websiteController.postPredict);
-router.get('/signup', (req, res) => {
-    res.render('includes/signups', {
-        pageTitle: 'Sign Up'
-    });
+router.post("/predict", websiteController.postPredict);
+
+router.get("/signup", (req, res) => {
+  res.render("signup", {
+    pageTitle: "Sign Up",
+  });
 });
-router.get('/login', (req, res) => {
-    res.render('includes/login', {
-        pageTitle: 'Login'
-    });
+router.get("/login", (req, res) => {
+  res.render("login", {
+    pageTitle: "Login",
+  });
 });
+
 module.exports = router;

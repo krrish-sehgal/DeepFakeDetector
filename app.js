@@ -9,10 +9,12 @@ const MongoDBStore = require("connect-mongodb-session")(session);
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const path = require("path");
+require("dotenv").config();
 
 const app = express();
 const port = process.env.PORT || 4000;
-const MONGODB_URI = process.env.MONGODB_URI;
+const MONGODB_URI =
+  "mongodb://Krrish:kishu123@ac-7gvopvc-shard-00-00.1nxbntm.mongodb.net:27017,ac-7gvopvc-shard-00-01.1nxbntm.mongodb.net:27017,ac-7gvopvc-shard-00-02.1nxbntm.mongodb.net:27017/deep-fake-detector?ssl=true&replicaSet=atlas-11fue8-shard-0&authSource=admin&w=majority&appName=Cluster1";
 
 const store = new MongoDBStore({
   uri: MONGODB_URI,
@@ -69,7 +71,7 @@ app.use(
 );
 app.use((req, res, next) => {
   if (!req.session.user) {
-    console.log("here in session");
+    // console.log("here in session");
     return next();
   }
   User.findById(req.session.user._id)
@@ -95,10 +97,12 @@ const errorController = require("./controllers/error");
 
 const websiteRoutes = require("./routes/websiteRoutes");
 const extensionRoutes = require("./routes/extensionRoutes");
+const extensionAuthRoutes = require("./routes/extensionAuthRoutes");
 const authRoutes = require("./routes/authRoutes");
 
 app.use(authRoutes);
 app.use(websiteRoutes);
+app.use("/extension", extensionAuthRoutes);
 app.use("/extension", extensionRoutes);
 app.use(errorController.get404);
 

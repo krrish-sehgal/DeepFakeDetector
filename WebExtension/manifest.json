@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "Test1",
+  "name": "deep-fake-detect",
   "version": "0.0.1",
   "description": "snipping",
   "action": {
@@ -17,7 +17,8 @@
     "tabs",
     "activeTab",
     "scripting",
-    "clipboardWrite"
+    "clipboardWrite",
+    "contextMenus"
   ],
   "background": {
     "service_worker": "background.js"

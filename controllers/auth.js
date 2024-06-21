@@ -9,6 +9,7 @@ exports.getLogin = (req, res, next) => {
 
 exports.getSignup = (req, res, next) => {
   res.render("auth/signup", {
+    extension: false,
     pageTitle: "Sign Up",
   });
 };
@@ -55,6 +56,7 @@ exports.postSignup = (req, res, next) => {
   let userName = req.body.userName;
   let email = req.body.email;
   let password = req.body.password;
+  let isExtension = req.body.isExtension;
 
   User.findOne({ email: email })
     .then((userDoc) => {
@@ -74,7 +76,10 @@ exports.postSignup = (req, res, next) => {
           return user.save();
         })
         .then((result) => {
-          res.redirect("/login");
+          if (isExtension) {
+            return res.redirect("/extension");
+          }
+          res.redirect("/");
         });
     })
     .catch((err) => {

@@ -19,25 +19,10 @@ const UserSchema = new Schema({
     type: String,
     required: true,
   },
+  images: {
+    type: Array,
+    required: false,
+  },
 });
-
-// UserSchema.method.generateToken = async function () {
-//   try {
-//     let token = jwt.sign(
-//       {
-//         userId: this._id.toString(),
-//       },
-//       process.env.JWT_SECRET_KEY,
-//       {
-//         expiresIn: "30d",
-//       }
-//     );
-//     // this.tokens = this.tokens.concat({ token: token });
-//     // await this.save();
-//     return token;
-//   } catch (err) {
-//     console.log(err);
-//   }
-// };
 
 module.exports = mongoose.model("User", UserSchema);

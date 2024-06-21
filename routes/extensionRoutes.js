@@ -6,6 +6,10 @@ const extensionController = require("../controllers/extension");
 
 const router = express.Router();
 
-router.post("/upload", extensionController.postUpload);
+const isAuth = require("../middleware/is-ext-auth");
+
+router.get("/", extensionController.getIndex);
+
+router.post("/upload", isAuth.verifyToken, extensionController.postUpload);
 
 module.exports = router;

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Snipping Tool</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <h1>Deep Fake Detector</h1>
+
+    <!-- Login/Signup Form -->
+    <div id="authContainer">
+      <form id="authForm">
+        <input type="email" id="email" placeholder="Email" required />
+        <input type="password" id="password" placeholder="Password" required />
+        <button type="submit">Login</button>
+        <p>New to Deep Guard</p>
+        <a href="#" id="signupLink">Sign Up</a>
+        <p id="authMessage"></p>
+      </form>
+    </div>
+
+    <!-- Snipping Tool -->
+    <div id="snipContainer" style="display: none">
+      <p>Select the portion of the image using the snipping tool</p>
+      <button id="snipButton">Snip</button>
+      <a href="#" id="logOut">Log Out</a>
+
+      <div id="imageContainer"></div>
+    </div>
+
+    <script src="popup.js"></script>
+  </body>
+</html>

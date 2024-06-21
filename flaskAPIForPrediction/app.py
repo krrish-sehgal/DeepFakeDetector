@@ -1,24 +1,25 @@
-# to take the image path 
-# read the image , 
-# run it into the model 
-# get the prediction
-# return the prediction as JSON 
-
 from Mesonet.classifiers import Meso4  # Import your model class
 import numpy as np
 from PIL import Image
-import io
-import sys
-import json
+import logging
+
+from flask import Flask, request, jsonify
+from flask_cors import CORS, cross_origin
+
+app = Flask(__name__)
+CORS(app)  # Enable CORS for all routes
+
+# Configure logging
+logging.basicConfig(level=logging.INFO)
 
 # Instantiate your model
 classifier = Meso4()
 classifier.load('./Mesonet/weights/Meso4_DF.h5')
 
-def make_prediction(image_path):
+def make_prediction(image_file):
     try:
         # Read the image file
-        img = Image.open(image_path)
+        img = Image.open(image_file)
         
         # Convert PIL image to numpy array
         img_array = np.array(img)
@@ -46,13 +47,32 @@ def make_prediction(image_path):
         # Return error message if any exception occurs
         return {"error": str(e)}
 
+@app.route('/predict', methods=['POST'])
+def predict():
+    app.logger.info('Predict endpoint called')
+    if 'file' not in request.files:
+        app.logger.error('No file part in the request')
+        return jsonify({"error": "No file part"}), 400
+    
+    file = request.files['file']
+    app.logger.info(f'File received: {file.filename}')
+    
+    if file.filename == '':
+        app.logger.error('No selected file')
+        return jsonify({"error": "No selected file"}), 400
+    
+    try:
+        prediction = make_prediction(file)
+        app.logger.info(f'Prediction: {prediction}')
+        return jsonify({"prediction": prediction})
+    
+    except Exception as e:
+        app.logger.error(f'Error during prediction: {str(e)}')
+        return jsonify({"error": str(e)}), 500
+
+@app.route('/')
+def index():
+    return jsonify({"message": "Hello, World!"})
+
 if __name__ == "__main__":
-    if len(sys.argv) != 2:
-        print("Usage: python3 your_script.py <image_path>")
-        sys.exit(1)
-    
-    image_path = sys.argv[1]
-    prediction = make_prediction(image_path)
-    
-    # Output the prediction as JSON
-    print(json.dumps({"prediction": prediction}))
+    app.run(debug=True)

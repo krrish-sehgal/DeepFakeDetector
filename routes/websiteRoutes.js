@@ -20,5 +20,9 @@ router.get("/login", (req, res) => {
     pageTitle: "Login",
   });
 });
-
+router.get("/history", (req, res) => {
+    res.render("history", {
+      pageTitle: "History",
+    });
+  });
 module.exports = router;

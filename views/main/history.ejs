@@ -1,0 +1,93 @@
+<%- include('../includes/head.ejs') %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deep Guard - History</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <%- include('includes/navigation.ejs') %>
+
+    <div class="history-container container-xxl">
+        <h2>Prediction History</h2>
+        <div class="history-header">
+            <span>Image</span>
+            <span>Date Uploaded</span>
+            <span>Result</span>
+        </div>
+        <div class="history-grid">
+            <% history.forEach(item => { %>
+                <div class="history-item">
+                    <div class="history-image">
+                        <img src="<%= item.imageUrl %>" alt="Predicted Image">
+                    </div>
+                    <div class="history-details">
+                        <p><%= item.date %></p>
+                    </div>
+                    <div class="history-result">
+                        <p><%= item.result %>%</p>
+                        <a href="#" class="report-link" data-result-id="<%= item.id %>">Unsatisfied with result?</a>
+                    </div>
+                </div>
+            <% }); %>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="reportModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2>Results are wrong? Report it!</h2>
+            <form id="reportForm">
+                <input type="hidden" id="resultId" name="resultId">
+                <label for="feedback">Please provide your feedback:</label>
+                <textarea id="feedback" name="feedback" rows="4" required></textarea>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const modal = document.getElementById("reportModal");
+            const closeButton = document.querySelector(".close-button");
+            const reportLinks = document.querySelectorAll(".report-link");
+
+            reportLinks.forEach(link => {
+                link.addEventListener("click", (event) => {
+                    event.preventDefault();
+                    const resultId = event.target.getAttribute("data-result-id");
+                    document.getElementById("resultId").value = resultId;
+                    modal.style.display = "block";
+                });
+            });
+
+            closeButton.addEventListener("click", () => {
+                modal.style.display = "none";
+            });
+
+            window.addEventListener("click", (event) => {
+                if (event.target === modal) {
+                    modal.style.display = "none";
+                }
+            });
+
+            document.getElementById("reportForm").addEventListener("submit", (event) => {
+                event.preventDefault();
+                const resultId = document.getElementById("resultId").value;
+                const feedback = document.getElementById("feedback").value;
+
+                // Handle the feedback submission here (e.g., send it to the server)
+                console.log("Feedback submitted for result ID:", resultId, "Feedback:", feedback);
+
+                modal.style.display = "none";
+            });
+        });
+    </script>
+</body>
+</html>
+
+
+    <%- include('../includes/end.ejs') %>

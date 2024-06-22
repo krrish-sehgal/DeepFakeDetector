@@ -355,3 +355,149 @@ footer {
 .login-container .btn-primary:hover {
   background-color: #0056b3;
 }
+
+.history-container {
+  background-color: #ffffff;
+  padding: 50px;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  margin-bottom: 30px;
+}
+
+.history-container h2 {
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 30px;
+}
+
+.history-header {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 20px;
+  background-color: #4e4e4e;
+  color: white;
+  border-radius: 8px 8px 0 0;
+  font-weight: bold;
+}
+
+.history-header span {
+  flex: 1;
+  text-align: center;
+}
+
+.history-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.history-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background: #f9f9f9;
+  border-bottom: 1px solid #ddd;
+  border-radius: 8px;
+  transition: background-color 0.3s;
+}
+
+.history-item:hover {
+  background-color: #f1f1f1;
+}
+
+.history-image img {
+  width: 100px;
+  height: auto;
+  border-radius: 8px;
+}
+
+.history-details p, .history-result p {
+  margin: 0;
+  text-align: center;
+  color: #333;
+}
+
+.report-link {
+  display: block;
+  margin-top: 5px;
+  color: #4285F4;
+  text-decoration: none;
+  text-align: center;
+}
+
+.report-link:hover {
+  text-decoration: underline;
+}
+
+/* Modal Styles */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  padding-top: 100px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  max-width: 500px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.close-button {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close-button:hover,
+.close-button:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+#reportForm {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+#reportForm label {
+  font-weight: bold;
+}
+
+#reportForm textarea {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  resize: vertical;
+}
+
+#reportForm button {
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #4285F4;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+#reportForm button:hover {
+  background-color: #357ae8;
+}
